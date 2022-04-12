@@ -3,6 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const mongoose_1 = __importDefault(require("mongoose"));
@@ -46,6 +49,7 @@ passport_1.default.use(new localStrategy(User.authenticate()));
 passport_1.default.serializeUser(User.serializeUser());
 passport_1.default.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();

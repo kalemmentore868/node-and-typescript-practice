@@ -15,17 +15,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const review_1 = __importDefault(require("./review"));
 const Schema = mongoose_1.default.Schema;
+const ImageSchema = new Schema({
+    url: String,
+    filename: String
+});
+ImageSchema.virtual("thumbnail").get(function () {
+    return this.url.replace("/upload", "/upload/w_200");
+});
 const ProductSchema = new Schema({
     title: String,
     price: Number,
     description: String,
-    image: String,
+    images: [ImageSchema],
     reviews: [
         {
             type: Schema.Types.ObjectId,
             ref: "Review"
         }
-    ]
+    ],
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 ProductSchema.post('findOneAndDelete', function (doc) {
     return __awaiter(this, void 0, void 0, function* () {

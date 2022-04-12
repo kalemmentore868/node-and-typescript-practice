@@ -26,10 +26,18 @@ const seedDB = () => __awaiter(void 0, void 0, void 0, function* () {
     for (let i = 0; i < 15; i++) {
         const random5 = Math.floor(Math.random() * 5);
         const prod = new product_1.default({
+            author: "6249bcdff17c38f551e252b2",
             title: titles[random5],
             price: random5 * 3 + 1,
             description: "yea uk how we do it onna friday, STEAMY",
-            image: "https://source.unsplash.com/collection/10079014"
+            images: [
+                { url: "https://res.cloudinary.com/dbpnbpuel/image/upload/v1636417611/o36dhxgmdahwzvhyzzww.jpg",
+                    filename: "SafeSell/msts7utt9ym5twf8efn2" },
+                {
+                    url: " https://res.cloudinary.com/dbpnbpuel/image/upload/v1649280931/SafeSell/nvmqxbu0bcb23ztgbxuu.jpg",
+                    filename: "nvmqxbu0bcb23ztgbxuu"
+                }
+            ]
         });
         yield prod.save();
     }

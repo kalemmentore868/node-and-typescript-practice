@@ -7,6 +7,10 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
 const reviewSchema = new Schema({
     body: String,
-    rating: Number
+    rating: Number,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 exports.default = mongoose_1.default.model("Review", reviewSchema);

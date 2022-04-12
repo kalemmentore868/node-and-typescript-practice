@@ -9,9 +9,10 @@ const productSchema = joi_1.default.object({
     product: joi_1.default.object({
         title: joi_1.default.string().required(),
         price: joi_1.default.number().required().min(0),
-        image: joi_1.default.string().required(),
+        // image: Joi.object(),
         description: joi_1.default.string().required()
-    }).required()
+    }).required(),
+    deleteImages: joi_1.default.array()
 });
 exports.productSchema = productSchema;
 const reviewSchema = joi_1.default.object({
